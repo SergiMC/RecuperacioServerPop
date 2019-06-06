@@ -3,7 +3,6 @@ Sergi Muñoz Carmona
 Examen Docker
 github : https://github.com/SergiMC/RecuperacioServerPop.git
 
-
 **Sergi Muñoz Carmona**
 **Examen Docker recuperació**
 
@@ -35,7 +34,6 @@ Creada la network, crearem la imatge amb els fitxers de configuració del servid
 
 
 ```
-
 Creem el docker:
 
 ```
@@ -43,8 +41,8 @@ Creem el docker:
 64342998f8f6324d5ae532bd1b915074c331ddc80e82ab8d349e5b0efd80ea3a
 
 ```
-
 Asegurem que el docker està funcionant correctament:
+
 ```
 [root@ip-172-31-18-17 RecuperacioServerPop]# docker ps
 CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS                                        NAMES
