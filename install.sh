@@ -10,16 +10,16 @@ echo "marta" | passwd --stdin marta
 echo "pere" | passwd --stdin pere
 
 #Creem correu
-cp /opt/docker/correu_marta /var/spool/mail/correu_marta
-cp /opt/docker/missatge_pere /var/spool/mail/correu_pere
+cp /opt/docker/correu__marta /var/spool/mail/marta
+cp /opt/docker/correu_pere /var/spool/mail/pere
 
 #Donem els permissos
-chown -R marta.marta /var/spool/mail/correu_marta
-chown -R pere.pere /var/spool/mail/correu_pere
+chown -R marta.marta /var/spool/mail/marta
+chown -R pere.pere /var/spool/mail/pere
 
 #Copiem fitxers
 cp /opt/docker/file.pdf /var/ftp/file.pdf
-cp /opt/docker/file.txt /var/pub/file.txt
+cp /opt/docker/file.txt /var/ftp/pub/file.txt
 cp /opt/docker/xinetd.d/* /etc/xinetd.d/
 
 
