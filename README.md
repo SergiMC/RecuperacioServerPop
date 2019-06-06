@@ -37,7 +37,7 @@ Creada la network, crearem la imatge amb els fitxers de configuració del servid
 Creem el docker:
 
 ```
-[root@ip-172-31-18-17 RecuperacioServerPop]# docker run --rm --name servidorpop --hostname servidorpop -p 110:110 -p 995:995 --network popnet -d sergimc/m11extrasergi:v1
+[root@ip-172-31-18-17 RecuperacioServerPop]# docker run --rm --name popserver --hostname servidorpop -p 110:110 -p 995:995 --network popnet -d sergimc/m11extrasergi:v1
 64342998f8f6324d5ae532bd1b915074c331ddc80e82ab8d349e5b0efd80ea3a
 
 ```
