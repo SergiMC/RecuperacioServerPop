@@ -9,6 +9,11 @@ useradd pere
 echo "marta" | passwd --stdin marta
 echo "pere" | passwd --stdin pere
 
+#Copiem fitxers
+
+cp /opt/docker/ipop3 /etc/xinetd.d/ipop3
+cp /opt/docker/pop3s /etc/xinetd.d/pop3s
+
 #Creem correu
 cp /opt/docker/marta /var/spool/mail/marta
 cp /opt/docker/pere /var/spool/mail/pere
@@ -17,11 +22,8 @@ cp /opt/docker/pere /var/spool/mail/pere
 chown -R marta.marta /var/spool/mail/marta
 chown -R pere.pere /var/spool/mail/pere
 
-#Copiem fitxers
-cp /opt/docker/file.pdf /var/ftp/file.pdf
-cp /opt/docker/file.txt /var/ftp/pub/file.txt
-cp /opt/docker/xinetd.d/* /etc/xinetd.d/
-/usr/bin/ssh-keygen -A
+
+
 
 
 
