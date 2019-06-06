@@ -2,7 +2,6 @@
 #Data: 06/06/2019
 #Examen server pop
 #---------------------------
-
 FROM fedora:27
 LABEL author="@edt Sergi Muñoz Carmona"
 LABEL description="Examen Docker POP Curs 2018-2019"
