@@ -6,6 +6,7 @@ github : https://github.com/SergiMC/RecuperacioServerPop.git
 **Sergi Muñoz Carmona**
 **Examen Docker recuperació**
 
+
 ## Imatge en Dockerhub:
 La imatge es troba en el meu docker sergimc [sergimc](https://hub.docker.com/u/sergimc/)
 i la configuració dels fitxer al repositori github [sergimc](https://github.com/SergiMC/RecuperacioServerPop.git)
@@ -75,11 +76,32 @@ Nmap done: 1 IP address (1 host up) scanned in 1.62 seconds
 Fem el telnet contra la ip de l'amazon i el port 110 (pop)
 
 ```
-[isx39449342@i10 RecuperacioServerPop]$ telnet 18.130.106.169 110
+[isx39449342@i10 tmp]$ telnet 18.130.106.169 110
 Trying 18.130.106.169...
 Connected to 18.130.106.169.
 Escape character is '^]'.
-+OK POP3 servidorpop 2007f.104 server ready
++OK POP3 popserver 2007f.104 server ready
+USER pere
++OK User name accepted, password please
+PASS pere
++OK Mailbox open, 1 messages
+LIST
++OK Mailbox scan listing follows
+1 167
+.
+RETR 1
++OK 167 octets
+Received: from ... by ... with ESMTP;
+Subject: Prova
+From: <pere@edt-orgcom>
+To: <junkdtectr@carolina.rr.com>
+Status: RO
+
+>Bon dia avui tenim examen :att pere.
+.
+QUIT
++OK Sayonara
+Connection closed by foreign host.
 
 ```
 
@@ -87,7 +109,7 @@ Escape character is '^]'.
 correctament:**
 
 ```
-[isx39449342@i10 RecuperacioServerPop]$ openssl s_client -connect 18.130.106.169:995
+[isx39449342@i10 tmp]$ openssl s_client -connect 18.130.106.169:995
 CONNECTED(00000003)
 depth=0 C = --, ST = SomeState, L = SomeCity, O = SomeOrganization, OU = SomeOrganizationalUnit, CN = localhost.localdomain, emailAddress = root@localhost.localdomain
 verify error:num=18:self signed certificate
@@ -101,30 +123,30 @@ Certificate chain
 ---
 Server certificate
 -----BEGIN CERTIFICATE-----
-MIIETjCCAzagAwIBAgIJAK63O9nsvt4MMA0GCSqGSIb3DQEBCwUAMIG7MQswCQYD
+MIIETjCCAzagAwIBAgIJALD90MvTePXSMA0GCSqGSIb3DQEBCwUAMIG7MQswCQYD
 VQQGEwItLTESMBAGA1UECAwJU29tZVN0YXRlMREwDwYDVQQHDAhTb21lQ2l0eTEZ
 MBcGA1UECgwQU29tZU9yZ2FuaXphdGlvbjEfMB0GA1UECwwWU29tZU9yZ2FuaXph
 dGlvbmFsVW5pdDEeMBwGA1UEAwwVbG9jYWxob3N0LmxvY2FsZG9tYWluMSkwJwYJ
 KoZIhvcNAQkBFhpyb290QGxvY2FsaG9zdC5sb2NhbGRvbWFpbjAeFw0xOTA2MDYw
-ODAxMjlaFw0yMDA2MDUwODAxMjlaMIG7MQswCQYDVQQGEwItLTESMBAGA1UECAwJ
+OTQ2NDJaFw0yMDA2MDUwOTQ2NDJaMIG7MQswCQYDVQQGEwItLTESMBAGA1UECAwJ
 U29tZVN0YXRlMREwDwYDVQQHDAhTb21lQ2l0eTEZMBcGA1UECgwQU29tZU9yZ2Fu
 aXphdGlvbjEfMB0GA1UECwwWU29tZU9yZ2FuaXphdGlvbmFsVW5pdDEeMBwGA1UE
 AwwVbG9jYWxob3N0LmxvY2FsZG9tYWluMSkwJwYJKoZIhvcNAQkBFhpyb290QGxv
 Y2FsaG9zdC5sb2NhbGRvbWFpbjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
-ggEBAMl6KxQjDHt4uGyyW62w5Xo5a8M5bgNoZWrDOue6+WMKPASFrANe+zypJwMX
-dhULxFp3oVyeOD91LLa1ehdMHN8QTeFJQa2cBJ8DHpSnXpycjHC9oerH/56Pv03R
-r4EH4bOGP3E4yqAPw6bKUSvEPGD1YWiBn1OS8nzwmBAgaFGLa0QyKj/QCiYW1aEB
-P10+f7i12mHSmZbCdrWnXuAA9XT+nObYFmWL2oPuGC6JZrqS2EFr9qb4VK5QDp1O
-DSQLJVonciJEKXb16UZ8KECBRCyC+Hx76TJ0AsLWQGbierK0dC4tqsEqM5dnNjO4
-H+slXC74j6DOcsUJFoALDYBkr1kCAwEAAaNTMFEwHQYDVR0OBBYEFIBVVfAQmD9x
-ThSirME0egDLde+7MB8GA1UdIwQYMBaAFIBVVfAQmD9xThSirME0egDLde+7MA8G
-A1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAGqAd6rrmf+A13sBJjx+
-9OZvACXI6y0RlkTca/MIXa+zgyODC2K+cvAXa6E94OgjkXJ61FxLEBJ4JmN9yaYt
-drNanBOqaDBdLuNE08+1SFIU7sTfvD8t+qQ6/VlT42Xkpb2jm0qmMgOn0ahk4e1D
-Q4p5fFe1YYqqSIqSpPJa0aIOqHWx0vPy0hlkX3qTBXH/n4wmQRkWvbeDzhgJil2q
-CvIYvEyceGyepeHDBu7yGxv+99qj9VrJAwCP9+HCpDg3EDApUdCOtO+ScRkj3spQ
-CHhTJZk9G6e5K7oL2jur6y+nGVcXvCYUb3bfvr3moXjTf5YbFFaZXPV/RYAbGi/2
-l+U=
+ggEBAMbCcEfKBwpB8547WGcCGFRp2q5NpDm+kPxcqGFpGoEmM9q89cEI6CcJmxVk
+hOyeSsz/Z6/W/UNwbNkRyM3mRfgnJj32k6Yiljv+KoaBnQVodxVMbGd912OJkry1
+NdNcf6i6eAxEVlaz4id34TZeb6H04WrIdMg00xtfLKeo1vitHN43blzJ3BmrC+W9
+J31XBBLx7sXBiJeYDYuXOf5TAv6a+14sSPLiSq0cR8/XXZD9NuBdXS/D5hNynQeP
+i14TdrcJ3Qx8F3uoEltOWt5Wl2beX6UmFiF6qQLcxharNSgyc9vDWDyCQsUgp1eR
+TJ/1Y71DxvL9ozpWS5YepHiyOEsCAwEAAaNTMFEwHQYDVR0OBBYEFJcjgWC2u/x0
+YVbimUqrBhx7q6QaMB8GA1UdIwQYMBaAFJcjgWC2u/x0YVbimUqrBhx7q6QaMA8G
+A1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBABJOvYmKLdrU2uAnZ79J
+TzzmWW1p+LCuXPUF2zdwyetMZO9bKZ45OTaQ3wF7BA6aKYGEVqt6E9xHVIX8PZHD
+1YXP7nfNl6c5GrKqOsHWRBWmW+X9qHO3ioUo1v74yPhrkaDEfUkWyTv3NNeFEp7j
+rH0Kq2qugsEWa3zU+YtjSOPqq2y1RQwL72yOxgv5n1oFmcj85zlP6dccIVeNCbQL
+IJsa1VpLS5Uxgcv7RhrkViB0VZCzKoSgYNSXHPPuT21th/rhHRRv7ktPGwqwk9e8
+I7FBVSVnl30gjGFq1VBxhwyNkFr3XSYw+dSIO1Lrxc7+CfHNMZNjd1q62AoyeV1L
+P88=
 -----END CERTIFICATE-----
 subject=/C=--/ST=SomeState/L=SomeCity/O=SomeOrganization/OU=SomeOrganizationalUnit/CN=localhost.localdomain/emailAddress=root@localhost.localdomain
 issuer=/C=--/ST=SomeState/L=SomeCity/O=SomeOrganization/OU=SomeOrganizationalUnit/CN=localhost.localdomain/emailAddress=root@localhost.localdomain
@@ -145,32 +167,49 @@ No ALPN negotiated
 SSL-Session:
     Protocol  : TLSv1.2
     Cipher    : ECDHE-RSA-AES256-GCM-SHA384
-    Session-ID: A5B9F85F6DB95FF268BAE042715F235FEFCBDA7C0D3E9850E00D7D10F0A9AD73
+    Session-ID: E7B602C9A6C6DE18AB087D470D551C3CFAB8346D111D7A6D59C1ACEDDFFD7A9E
     Session-ID-ctx: 
-    Master-Key: FB52602D27976B33AE95921C2759D6924E81C09094BF1831197EC18864F16B8C4AD22152F65B4651FB0F4E042171B070
+    Master-Key: 8D957742D23C702EA2368FC0468B62B6B4B6CAF99DBA89780C75306B86ABD2BF9C5BB414D3FD2C89268B7084B36DB36B
     PSK identity: None
     PSK identity hint: None
     SRP username: None
     TLS session ticket lifetime hint: 7200 (seconds)
     TLS session ticket:
-    0000 - 69 af 80 e3 16 c6 24 aa-9f 71 7b 63 a6 7c e0 4f   i.....$..q{c.|.O
-    0010 - 41 d1 9c e9 84 46 39 57-ca 06 65 08 51 cb 12 78   A....F9W..e.Q..x
-    0020 - d0 e0 48 bd 83 d9 5b ec-69 45 bc 19 1d 6b b4 23   ..H...[.iE...k.#
-    0030 - 2c 16 c2 b0 d1 63 7c 41-af da d3 3f 66 81 4f d3   ,....c|A...?f.O.
-    0040 - c0 df d2 ff af 4e e9 37-f3 86 54 9a e9 0f c4 a3   .....N.7..T.....
-    0050 - ae 98 5a e7 f8 44 06 09-3f 91 cb 2b 2f 43 80 be   ..Z..D..?..+/C..
-    0060 - 7d d2 34 18 30 d3 82 d0-28 6d 80 61 f8 08 10 76   }.4.0...(m.a...v
-    0070 - 71 b1 e6 64 f5 89 b7 07-9b fe 9f 2f e1 76 04 92   q..d......./.v..
-    0080 - 65 3c f0 b6 c2 08 b5 81-66 e1 ca 18 23 a2 1c c2   e<......f...#...
-    0090 - 08 81 b1 54 e4 37 08 41-c0 0b f0 67 a2 a3 b4 b8   ...T.7.A...g....
+    0000 - 49 a2 5a 99 42 b0 ef 12-97 87 3e 06 dc 62 44 69   I.Z.B.....>..bDi
+    0010 - 1e ee 06 75 ce a2 bc c4-7a 81 8f fe 69 be 12 c6   ...u....z...i...
+    0020 - 10 d5 d6 ae bb e5 0a 9c-b8 5f 3d 03 35 09 a1 8a   ........._=.5...
+    0030 - 36 33 94 0c b8 b8 dc 96-68 8f 02 35 86 98 68 d9   63......h..5..h.
+    0040 - 76 49 26 4a 7c 7d 5b 6c-87 3f 09 55 03 58 05 d0   vI&J|}[l.?.U.X..
+    0050 - 1b 0f 4f af cf 6c c1 d0-62 b7 98 17 81 56 b0 3f   ..O..l..b....V.?
+    0060 - d6 a4 03 13 9a 9c a5 6e-16 57 98 4e c5 51 21 d1   .......n.W.N.Q!.
+    0070 - a0 a2 38 98 04 86 2f b2-47 71 10 f1 97 38 50 d6   ..8.../.Gq...8P.
+    0080 - 10 9c a5 b4 45 d8 40 ee-b3 48 c2 eb 95 68 a7 e5   ....E.@..H...h..
+    0090 - df 19 dc 85 96 43 33 81-95 e3 56 74 58 c1 01 1c   .....C3...VtX...
 
-    Start Time: 1559810672
+    Start Time: 1559814927
     Timeout   : 7200 (sec)
     Verify return code: 18 (self signed certificate)
     Extended master secret: yes
 ---
-+OK POP3 servidorpop 2007f.104 server ready
-
++OK POP3 popserver 2007f.104 server ready
+USER marta
++OK User name accepted, password please
+PASS marta
++OK Mailbox open, 1 messages
+LIST
++OK Mailbox scan listing follows
+1 171
+.
+RETR 1
+RENEGOTIATING
+depth=0 C = --, ST = SomeState, L = SomeCity, O = SomeOrganization, OU = SomeOrganizationalUnit, CN = localhost.localdomain, emailAddress = root@localhost.localdomain
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 C = --, ST = SomeState, L = SomeCity, O = SomeOrganization, OU = SomeOrganizationalUnit, CN = localhost.localdomain, emailAddress = root@localhost.localdomain
+verify return:1
+quit
++OK Sayonara
+read:errno=0
 
 ```
 
