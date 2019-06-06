@@ -10,7 +10,7 @@ RUN dnf -y install xinetd telnet iproute iputils nmap uw-imap procps net-tools p
 RUN mkdir /opt/docker/
 ADD * /opt/docker/
 RUN chmod +x /opt/docker/startup.sh /opt/docker/install.sh
-RUN bash /opt/docker/install.sh
+#RUN bash /opt/docker/install.sh
 WORKDIR /opt/docker
 CMD [ "/opt/docker/startup.sh" ]
 

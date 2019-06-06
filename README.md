@@ -2,8 +2,7 @@ Sergi Muñoz Carmona
 07/06/2019
 Examen Docker
 github : https://github.com/SergiMC/RecuperacioServerPop.git
-isx27423760
-francs2
+
 
 **Sergi Muñoz Carmona**
 **Examen Docker recuperació**
